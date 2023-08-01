@@ -16,7 +16,16 @@ taskController.updateTask = async (req, res, next) => {
 };
 
 taskController.getTasks = async (req, res, next) => {
-  return next();
+  try {
+    const result = await db.query(`SELECT * FROM tasks;`);
+
+    if (result.rowCount > 0) {
+      res.locals.tasks = result.rows;
+      return next();
+    }
+  } catch (err) {
+    return next(err);
+  }
 };
 
 module.exports = taskController;

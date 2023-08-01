@@ -20,7 +20,7 @@ router.put('/', updateTask, (req, res) => {
 });
 
 router.get('/', getTasks, (req, res) => {
-  return res.status(200).send('success!');
+  return res.status(200).json(res.locals.tasks);
 });
 
 module.exports = router;
