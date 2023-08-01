@@ -20,20 +20,21 @@ const TaskList = () => {
   );
   const [listAnimations, setListAnimations] = useState(true);
   const [items, setItems] = useState(() => [
-    { id: uuidv4(), text: 'Item 1' },
-    { id: uuidv4(), text: 'Item 2' },
-    { id: uuidv4(), text: 'Item 3' },
-    { id: uuidv4(), text: 'Item 4' },
+    // uuidv4 are simply unique identifiers
+    { id: uuidv4(), text: 'Task 1' },
+    { id: uuidv4(), text: 'Task 2' },
+    { id: uuidv4(), text: 'Task 3' },
+    { id: uuidv4(), text: 'Task 4' },
   ]);
 
   const deleteItemById = (id) =>
     setItems((items) => items.filter((item) => item.id !== id));
 
   const addItem = () =>
-    setItems([...items, { id: uuidv4(), text: `New item` }]);
+    setItems([...items, { id: uuidv4(), text: 'New task' }]);
 
   const swipeRightOptions = (id) => ({
-    content: <TaskSwipeContent label='Delete' position='left' />,
+    content: <TaskSwipeContent label='Edit' position='left' />,
     actionAnimation: contentAnimation,
     action: () => deleteItemById(id),
   });
@@ -55,8 +56,11 @@ const TaskList = () => {
 
   return (
     <>
+      <button className='page__button' onClick={addItem}>
+        Add task
+      </button>
       <span className='page__action--title'>
-        Swipe to delete (trigger threshold: {threshold})
+        {/* Swipe to delete (trigger threshold: {threshold}) */}
       </span>
       <div className='animations-swipeable-list__container'>
         <SwipeableList threshold={threshold}>
@@ -93,10 +97,8 @@ const TaskList = () => {
           )}
         </SwipeableList>
       </div>
-      <button className='page__button' onClick={addItem}>
-        Add item
-      </button>
-      <div className='animations__switcher-row'>
+
+      {/* <div className='animations__switcher-row'>
         <span>Item content animation:</span>
         <select
           className='page__select animations__switcher'
@@ -122,7 +124,7 @@ const TaskList = () => {
           <option value='true'>ON</option>
           <option value='false'>OFF</option>
         </select>
-      </div>
+      </div> */}
     </>
   );
 };
