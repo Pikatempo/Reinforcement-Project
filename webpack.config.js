@@ -8,11 +8,25 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html', // to import index.html file inside index.js
+      title: 'hello',
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'src/index.html'),
     }),
   ],
   devServer: {
     port: 3030, // you can change the port
+    // static: {
+    //   directory: path.resolve(__dirname, 'dist'),
+    // },
+    open: true,
+    hot: true,
+    compress: true,
+    proxy: {
+      '/api/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+    },
   },
   module: {
     rules: [
