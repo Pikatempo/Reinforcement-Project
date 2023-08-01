@@ -39,12 +39,16 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/i, // styles files
-        use: ['style-loader', 'css-loader'],
-      },
-      {
         test: /\.(sa|sc|c)ss$/, // styles files
         use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(mp4|webm)$/,
+        type: 'asset/resource',
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/, // to import images and fonts
