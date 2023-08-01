@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import TaskList from './client/TaskList';
-// ReactDOM.render(<TaskList />, el);
+import { Provider } from 'react-redux';
+import { store } from './store/store.js';
 import App from './App.jsx';
 import { BrowserRouter } from 'react-router-dom';
 
-const el = document.getElementById('app');
-
-ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  el
+const root = ReactDOM.createRoot(document.getElementById('app'));
+root.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
