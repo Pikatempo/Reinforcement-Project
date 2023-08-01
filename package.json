@@ -12,13 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "@sandstreamdev/react-swipeable-list": "^1.0.2",
     "@sandstreamdev/std": "^0.13.3",
     "prop-types": "^15.8.1",
-=======
     "concurrently": "^8.2.0",
->>>>>>> dev
     "dotenv": "^16.3.1",
     "nodemon": "^3.0.1",
     "pg": "^8.11.1",
