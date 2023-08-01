@@ -38,6 +38,10 @@ module.exports = {
         },
       },
       {
+        test: /\.css$/i, // styles files
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.(sa|sc|c)ss$/, // styles files
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
