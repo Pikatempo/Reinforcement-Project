@@ -127,35 +127,4 @@ const TaskList = () => {
   );
 };
 
-// import React from 'react';
-// import {
-//   SwipeableList,
-//   SwipeableListItem,
-// } from '@sandstreamdev/react-swipeable-list';
-// import '@sandstreamdev/react-swipeable-list/dist/styles.css';
-// const App = () => {
-//   return (
-//     <>
-//       <SwipeableList>
-//         <SwipeableListItem
-//           swipeLeft={{
-//             content: <div>Edit Task</div>,
-//             action: () => console.info('swipe action triggered'),
-//           }}
-//           swipeRight={{
-//             content: <div>Delete Task</div>,
-//             action: () => console.info('swipe action triggered'),
-//           }}
-//           onSwipeProgress={(progress) =>
-//             console.info(`Swipe progress: ${progress}%`)
-//           }
-//         >
-//           <div> Link to Task Here</div>
-//         </SwipeableListItem>
-//       </SwipeableList>
-//       <h1>Hello React</h1>
-//     </>
-//   );
-// };
-
 export default TaskList;
