@@ -1,21 +1,22 @@
-// import database 
-const db = require('../model')
+// import database
+const db = require('../model');
 
 const taskController = {};
 
-userController.addTask = async (req, res, next) => {
-
+taskController.addTask = (req, res, next) => {
+  return next();
 };
 
 taskController.deleteTask = async (req, res, next) => {
-
+  return next();
 };
 
 taskController.updateTask = async (req, res, next) => {
-
-}; 
-
-taskController.getTasks = async (req, res, next) => {
-
+  return next();
 };
 
+taskController.getTasks = async (req, res, next) => {
+  return next();
+};
+
+module.exports = taskController;
