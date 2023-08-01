@@ -1,5 +1,5 @@
-.TaskSwipe_item-content-left {
-  background-color: red;
+.TaskSwipe__item-content-left {
+  background-color: green;
   box-sizing: border-box;
   color: white;
   height: 100%;
@@ -7,10 +7,11 @@
   display: flex;
   align-items: center;
   padding: 4px 8px;
+
 }
 
 .TaskSwipe__item-content-right {
-  background-color: green;
+  background-color: red;
   box-sizing: border-box;
   color: white;
   height: 100%;
