@@ -39,11 +39,22 @@ const TaskList = () => {
     setItems(tasks);
   }, []);
 
-  const deleteItemById = (id) =>
-    setItems((items) => items.filter((item) => item.id !== id));
+  const deleteItemById = async (id) => {
+    const delData = async (id) => {
+      const res = await axios.delete('/api/task/' + id);
+      if (res.status === 200) {
+        const data = await res.data;
+        return data;
+      }
+    };
+    const result = await delData(id);
+    if (result === 'success!') {
+      setItems((items) => items.filter((item) => item.task_id !== id));
+    }
+  };
 
   const addItem = () =>
-    setItems([...items, { id: uuidv4(), text: 'New task' }]);
+    setItems([...items, { task_id: uuidv4(), task_name: 'New task' }]);
 
   const swipeRightOptions = (id) => ({
     content: <TaskSwipeContent label="Edit" position="left" />,
@@ -86,7 +97,7 @@ const TaskList = () => {
               className={className}
               enter={listAnimations}
               exit={listAnimations}>
-              {items.map(({ task_id, task_name }) => (
+              {items.map(({ task_id, task_name, due_date }) => (
                 <CSSTransition
                   classNames="my-node"
                   key={task_id}
@@ -98,7 +109,7 @@ const TaskList = () => {
                     swipeRight={swipeRightOptions(task_id)}
                     swipeStartThreshold={swipeStartThreshold}
                     threshold={threshold}>
-                    <TaskItem label={task_name} />
+                    <TaskItem label={task_name} timeLeft={due_date} />
                   </SwipeableListItem>
                 </CSSTransition>
               ))}
