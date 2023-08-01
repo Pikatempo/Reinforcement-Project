@@ -3,7 +3,17 @@ const db = require('../model');
 
 const taskController = {};
 
-taskController.addTask = (req, res, next) => {
+taskController.addTask = async (req, res, next) => {
+  const { task_name, due_date } = req.body;
+  try {
+    const result = await db.query(
+      'INSERT INTO tasks (task_name, due_date) VALUES ($1, $2) RETURNING *',
+      [task_name, due_date]
+    );
+    res.locals.tasks = result.rows[0];
+  } catch (err) {
+    return next(err);
+  }
   return next();
 };
 

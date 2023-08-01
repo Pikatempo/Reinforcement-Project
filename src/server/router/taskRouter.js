@@ -8,7 +8,7 @@ const {
 const router = express.Router();
 
 router.post('/', addTask, (req, res) => {
-  return res.status(200).send('success!');
+  return res.status(200).json(res.locals.tasks);
 });
 
 router.delete('/', deleteTask, (req, res) => {

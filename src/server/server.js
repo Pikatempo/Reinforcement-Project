@@ -4,7 +4,7 @@ const PORT = 3000;
 const taskRouter = require('./router/taskRouter.js');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express({ extended: true }));
 
 app.get('/', (req, res) => {
   return res.status(200).send('Great Server Page');
