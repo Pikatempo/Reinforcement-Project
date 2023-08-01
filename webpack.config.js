@@ -8,18 +8,25 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html', // to import index.html file inside index.js
+      title: 'hello',
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'src/index.html'),
     }),
   ],
   devServer: {
     port: 3030, // you can change the port
+    // static: {
+    //   directory: path.resolve(__dirname, 'dist'),
+    // },
     open: true,
     hot: true,
     compress: true,
     proxy: {
-      '/api': 'http:localhost:3000',
+      '/api/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
     },
-    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -31,13 +38,11 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/i, // styles files
         use: ['style-loader', 'css-loader'],
       },
       {
-        // import css
-        test: /\.s[ac]ss$/i,
-        include: path.resolve(__dirname, 'src'),
+        test: /\.(sa|sc|c)ss$/, // styles files
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
