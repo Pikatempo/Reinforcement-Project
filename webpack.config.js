@@ -13,6 +13,13 @@ module.exports = {
   ],
   devServer: {
     port: 3030, // you can change the port
+    open: true,
+    hot: true,
+    compress: true,
+    proxy: {
+      '/api': 'http:localhost:3030',
+    },
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -24,7 +31,13 @@ module.exports = {
         },
       },
       {
-        test: /\.(sa|sc|c)ss$/, // styles files
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        // import css
+        test: /\.s[ac]ss$/i,
+        include: path.resolve(__dirname, 'src'),
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {

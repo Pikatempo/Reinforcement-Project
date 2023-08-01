@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './App.scss';
+import TaskList from './client/TaskList';
+import './client/TaskList';
 
 const el = document.getElementById('app');
 
-ReactDOM.render(<App />, el);
+ReactDOM.render(<TaskList />, el);
