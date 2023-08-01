@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "clear && concurrently \"webpack-dev-server --mode development --hot --progress --color\" \"nodemon ./src/server/server.js\"",
     "build": "webpack --mode production",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage"
+    "test": "clear && node --experimental-vm-modules node_modules/.bin/jest --coverage"
   },
   "keywords": [],
   "author": "",
