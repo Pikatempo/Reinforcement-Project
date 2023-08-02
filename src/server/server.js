@@ -5,7 +5,7 @@ const taskRouter = require('./router/taskRouter.js');
 const userRouter = require('./router/userRouter.js');
 
 app.use(express.json());
-app.use(express({ extended: true }));
+app.use(express());
 
 app.get('/', (req, res) => {
   return res.status(200).send('Great Server Page');

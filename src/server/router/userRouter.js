@@ -7,8 +7,7 @@ router.post('/signup', addUser, (req, res) => {
 });
 
 router.post('/verifyUser', verifyUser, (req, res) => {
-  // return res.status(200)
-  return res.redirect('http://localhost:3030/dashboard')
+  return res.status(200).json(res.locals.userInfo)
 });
 
 
