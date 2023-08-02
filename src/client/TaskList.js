@@ -7,9 +7,6 @@ import {
   SwipeableListItem,
 } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
-import { findKey, mapEntries } from '@sandstreamdev/std/object';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchTasks } from '../store/taskState.js';
 import TaskItem from './components/TaskItem';
 import axios from 'axios';
 import TaskSwipeContent from './components/TaskSwipeContent';
@@ -17,7 +14,6 @@ import TaskSwipeContent from './components/TaskSwipeContent';
 import './TaskList.scss';
 
 const TaskList = () => {
-  const dispatch = useDispatch();
   const [contentAnimation, setContentAnimation] = useState(
     ActionAnimations.REMOVE
   );
@@ -53,21 +49,54 @@ const TaskList = () => {
     }
   };
 
-  const addItem = () =>
-    setItems([...items, { task_id: uuidv4(), task_name: 'New task' }]);
+  const postItem = async (task) => {
+    const addData = async () => {
+      const res = await axios({
+        method: 'post',
+        url: '/api/task/',
+        data: {
+          task_name: task.task_name,
+          due_date: '2023-12-02T05:00:00.000Z',
+        },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (res.status === 200) {
+        const data = await res.data;
+        return data;
+      }
+    };
+
+    const result = await delData(id);
+    if (result === 'success!') {
+      setItems((items) => items.filter((item) => item.task_id !== id));
+    }
+  };
+
+  const addItem = () => {
+    setItems([...items, { task_id: -1, task_name: 'New task', isNew: true }]);
+  };
+  const saveNewItem = (id, task_name, due_date, completed, expired) => {
+    setItems(
+      items.map((item) =>
+        item.task_id === id
+          ? { ...item, task_name, due_date, completed, expired, isNew: false }
+          : item
+      )
+    );
+  };
 
   const swipeRightOptions = (id) => ({
     content: <TaskSwipeContent label="Edit" position="left" />,
     actionAnimation: contentAnimation,
     action: () => deleteItemById(id),
   });
-
   const swipeLeftOptions = (id) => ({
     content: <TaskSwipeContent label="Delete" position="right" />,
     actionAnimation: contentAnimation,
     action: () => deleteItemById(id),
   });
-
   const handleChangeActionAnimation = ({ target: { value } }) =>
     setContentAnimation(ActionAnimations[value]);
 
@@ -97,7 +126,7 @@ const TaskList = () => {
               className={className}
               enter={listAnimations}
               exit={listAnimations}>
-              {items.map(({ task_id, task_name, due_date }) => (
+              {items.map(({ task_id, task_name, due_date, isNew }) => (
                 <CSSTransition
                   classNames="my-node"
                   key={task_id}
@@ -109,7 +138,13 @@ const TaskList = () => {
                     swipeRight={swipeRightOptions(task_id)}
                     swipeStartThreshold={swipeStartThreshold}
                     threshold={threshold}>
-                    <TaskItem label={task_name} timeLeft={due_date} />
+                    <TaskItem
+                      id={task_id}
+                      label={task_name}
+                      timeLeft={due_date}
+                      isEditing={isNew}
+                      setFunc={saveNewItem}
+                    />
                   </SwipeableListItem>
                 </CSSTransition>
               ))}
