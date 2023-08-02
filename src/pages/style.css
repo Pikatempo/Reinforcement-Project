@@ -1,14 +1,76 @@
 body {
   /* font-family: 'Hanken Grotesk', sans-serif; */
+  background-color: #1f1f1f;
 }
 
 .login,
 .signup {
+  margin-top: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+}
+
+.loginCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 88%;
+  width: 27%;
+  background-image: linear-gradient(
+    -45deg,
+    #b799ff 0%,
+    #acbcff 25%,
+    #aee2ff 51%,
+    #e6fffd 100%
+  );
+  -webkit-animation: AnimateBG 10s ease infinite;
+  animation: AnimateBG 10s ease infinite;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px #0000001a;
+  backdrop-filter: blur(7.9px);
+  -webkit-backdrop-filter: blur(7.9px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 1.5rem;
+  -webkit-filter: grayscale(20%);
+  filter: grayscale(20%);
+  min-width: 150px;
+  z-index: 130;
+  padding-bottom: 80px;
+  padding-top: 80px;
+}
+
+@-webkit-keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.cardElements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
@@ -50,7 +112,7 @@ input,
 }
 
 .loginButton:hover {
-  background-color: #00a6ff;
+  background-color: #6f61c0;
   box-shadow: none;
 }
 
@@ -61,4 +123,98 @@ input,
 
 .oauthBox a {
   text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .login,
+  .signup {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+.loginCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  height: 95%;
+  width: 86%;
+  background-image: linear-gradient(
+    -45deg,
+    #b799ff 0%,
+    #acbcff 25%,
+    #aee2ff 51%,
+    #e6fffd 100%
+  );
+  -webkit-animation: AnimateBG 10s ease infinite;
+  animation: AnimateBG 10s ease infinite;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px #0000001a;
+  backdrop-filter: blur(7.9px);
+  -webkit-backdrop-filter: blur(7.9px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 1.5rem;
+  -webkit-filter: grayscale(20%);
+  filter: grayscale(20%);
+  min-width: 150px;
+  z-index: 130;
+  padding-bottom: 80px;
+  padding-top: 80px;
+}
+
+@-webkit-keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+input,
+.loginButton {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  box-shadow: 2px 2px 2px #cccccc6c;
+  border-radius: 50px;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.loginButton {
+  min-width: 200px;
+  width: 100%;
+  height: 42px;
+  background-color: black;
+  color: white;
+  box-shadow: none;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px #cccccc6c;
+}
 }
