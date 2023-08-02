@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const taskRouter = require('./router/taskRouter.js');
-import userController from ('./controllers/userController')
+const userRouter = require('./router/userRouter.js');
 
 app.use(express.json());
 app.use(express({ extended: true }));
@@ -12,11 +12,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/task', taskRouter);
-
-app.get('api/verifyUser', userController.verifyUser, (req, res) => {
-  return res.redirect('/dashboard')
-});
-
+app.use('/api/user', userRouter);
 
 app.use((err, req, res, next) => {
   const defaultErr = {

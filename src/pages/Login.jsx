@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import './style.css';
 const dog = require('../assets/dog.jpg');
 import gitHubLogo from '../assets/git.png';
@@ -7,11 +8,19 @@ import axios from 'axios'
 
 const Login = () => {
 
- async function handleSubmit() {
-  await axios.get('/api/verifyUser', {
-    username,
-    password
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+ async function handleSubmit(e) {
+  await axios.post('/api/user/verifyUser/', {
+    username: username,
+    password: password,
   })
+
+  if ( {
+    response 
+  })
+  
   }
 
   return (
@@ -20,20 +29,24 @@ const Login = () => {
         <div className='cardElements'>
           {/* <img src={dog} width='100px' height='100px' alt='Svelte Logo' /> */}
           <h1>Login</h1>
-          <form onSubmit={handleSubmit}>
-            <input placeholder='username'></input>
+          <form>
+            <input placeholder='username' onChange={(e) => {
+                setUsername(e.target.value);
+              }} ></input>
             <br />
-            <input type='password' placeholder='password'></input>
+            <input type='password' placeholder='password' onChange={(e) => {
+                setPassword(e.target.value);
+              }}></input>
             <br />
-            <Link to='/dashboard'>
-              <button className='loginButton'>Login</button>
-            </Link>
+            {/* <Link to='/dashboard'> */}
+              <button type='button' className='loginButton' onClick={(e) => handleSubmit(e)}>Login</button>
+            {/* </Link> */}
 
             <div className='oauthBox'>
               <a className='outhButton'>
-                <Link to='/dashboard'>
-                  <button className='loginButton'>Log in with GitHub</button>
-                </Link>
+                {/* <Link to='/dashboard'> */}
+                  <button type='button' className='loginButton'>Log in with GitHub</button>
+                {/* </Link> */}
               </a>
             </div>
           </form>
