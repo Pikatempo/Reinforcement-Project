@@ -3,15 +3,24 @@ import './style.css';
 const dog = require('../assets/dog.jpg');
 import gitHubLogo from '../assets/git.png';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 const Login = () => {
+
+ async function handleSubmit() {
+  await axios.get('/api/verifyUser', {
+    username,
+    password
+  })
+  }
+
   return (
     <div className='login'>
       <div className='loginCard'>
         <div className='cardElements'>
           {/* <img src={dog} width='100px' height='100px' alt='Svelte Logo' /> */}
           <h1>Login</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input placeholder='username'></input>
             <br />
             <input type='password' placeholder='password'></input>
